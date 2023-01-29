@@ -1,0 +1,10 @@
+The procedure \code p is such that when called it calls again itself, so it is a never-terminating procedure.
+If the interpreter uses applicative order, then in order to evaluate
+\begtt\hisyntax{scheme}
+(test 0 (p))
+\endtt
+first \code{(p)} must be evaluated, and the procedure will never terminate;  instead, if the interpreter uses normal order, then by substitution the above expression is expanded into
+\begtt\hisyntax{scheme}
+(if (= 0 0) 0 (p))
+\endtt
+and, because of the evaluation rule of the special form \code{if}, since the condition \code{(= 0 0)} is true, the procedure \code p does not need to be called and the result is \code 0.
