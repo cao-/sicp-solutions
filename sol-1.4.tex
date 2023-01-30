@@ -1,19 +1,19 @@
 In the given procedure, the compound expression used as operator is
-\begtt\hisyntax{scheme}
+\begtt
 (if (> b 0) + -)
 \endtt
-This expression simply evaluates to the operator \code + or the operator \code -, depending on the value of \,\code b, whether it is positive or not.  Therefore, the procedure is equivalent to
-\begtt\hisyntax{scheme}
+This expression simply evaluates to the operator  `+` or the operator `-`, depending on the value of \,`b`, whether it is positive or not.  Therefore, the procedure is equivalent to
+\begtt
 (define (a-plus-abs-b a b)
    (if (> b 0) 
        (+ a b)
        (- a b)))
 \endtt
 and also to
-\begtt\hisyntax{scheme}
+\begtt
 (define (a-plus-abs-b a b)
    (+ a (if (> b 0)
             b
             (- b))))
 \endtt
-hence the name \code{a-plus-abs-b}.
+hence the name `a-plus-abs-b`.

@@ -1,0 +1,23 @@
+The `good-enough?` test implemented as 
+\begtt
+(define (good-enough? guess x)
+    (< (abs (- (square guess) x)) 0.001))
+\endtt
+fails for
+\begitems
+* small numbers: because the difference between the actual square root and the computed result will be of the order of the square root of the tolerance. For example, the result of `(sqrt 0.00000001)` with our procedure is $0.03125010656242753$, which is very close to $\sqrt{0.001}$ and very far from the correct result~$0.0001$.
+* large numbers: because, since machine numbers are represented with a limited precision, the difference between two consecutive machine numbers increases as the magnitude of those numbers increases, and it will eventually be bigger than the chosen precision.  As an example, the evaluation of `(sqrt 10000000000000)` will never terminate.
+\enditems
+We can solve the problem as suggested, by changing the procedures `sqrt-iter` and `good-enough?` into, for instance,
+\begtt
+(define (sqrt-iter guess x)
+  (sqrt-iter2 guess (improve guess x) x))
+
+(define (sqrt-iter2 guess improved-guess x)
+  (if (good-enough? guess improved-guess)
+      guess
+      (sqrt-iter improved-guess x)))
+
+(define (good-enough? guess improved-guess)
+  (< (/ (abs (- guess improved-guess)) guess) 0.001))
+\endtt

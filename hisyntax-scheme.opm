@@ -4,15 +4,17 @@
 \_newtoks \_hisyntaxscheme  \_newtoks \_hicolorsscheme
 
 \_global\_hicolorsscheme={% colors for Scheme language
+   \_def \DarkGrey {\setgreycolor{.25}}
+   \_colordef \MediumBlue {.5\LightBlue + .5\Blue}
    \_hicolor M \Orange    % Multi line strings
    \_hicolor S {\_visiblesp \Grey} % Single line strings
-   \_hicolor C \Green     % Comments
-   \_hicolor K \LightBlue % Keywords
-   \_hicolor O \Blue      % Operators
-   \_hicolor N \Red       % Numbers
-   \_hicolor D \Magenta   % def names
-   \_hicolor L \Black     % class names
-   \_hicolor R \Magenta   % Decorators
+   \_hicolor C \Green      % Comments
+   \_hicolor K \MediumBlue % Keywords
+   \_hicolor O \DarkGrey   % Operators
+   \_hicolor N \DarkGrey   % Numbers
+   \_hicolor D \Magenta    % def names
+   \_hicolor L \Black      % class names
+   \_hicolor R \Magenta    % Decorators
 }
 \_global\_hisyntaxscheme={%
    \_the\_hicolorsscheme
@@ -39,8 +41,10 @@
    \_foreach                                 % keywords
       {and}{if}{lambda}{not}{or}{define}
       \_do {\_replthis{\n#1\n}{\z K{#1}}}
-   \_replfromto{\n def\n}{\n\o(\n}{\z K{def}\x D{#1}\n\o(\n}
-   \_replfromto{\n class\n}{\n\o(\n}{\z K{class}\x L{#1}\n\o(\n}
+   %
+   \_foreach
+      {\_string#t}{\_string#f}
+      \_do {\_replthis{\n#1\n}{\z N{#1}}}
    %
    \_foreach 0123456789                       % numbers            
        \_do {\_replfromto{\n#1}{\n}{\c#1##1\e}}

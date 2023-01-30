@@ -1,8 +1,11 @@
 \fontfam[EBGaramond]
 
+\verbchar`
+\everytt={\hisyntax{scheme}\typoscale[900/900]}
+
 \def\sol #1.#2{\smallskip\noindent{\bf Solution #1.#2:}\vskip0pt\noindent\input sol-#1.#2}
 \def\sols #1.#2-#3{\fornum #2..#3 \do {\sol #1.##1}}
 
-\sols 1.1-5
+\sols 1.1-8
 
 \bye
