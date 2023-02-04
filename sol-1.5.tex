@@ -1,10 +1,10 @@
 The procedure `p` is such that when called it calls again itself, so it is a never-terminating procedure.
 If the interpreter uses applicative order, then when evaluating
-\begtt
+\begscmtt
 (test 0 (p))
 \endtt
 it must first evaluate `(p)`, so the procedure will never terminate;  instead, if the interpreter uses normal order, then by substitution the above expression is expanded into
-\begtt
+\begscmtt
 (if (= 0 0) 0 (p))
 \endtt
 and, because of the evaluation rule of the special form `if`, since the condition `(= 0 0)` is true, the procedure `p` is never called and the result is~$0$.

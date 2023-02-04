@@ -1,5 +1,5 @@
 Basically, it is just a matter of changing the `improve` procedure, besides changing names to the other already defined procedures.
-\begtt
+\begscmtt
 (define (improve guess x)
   (/ (+ (/ x (square guess))
         (* 2 guess))
@@ -13,7 +13,7 @@ Basically, it is just a matter of changing the `improve` procedure, besides chan
 
 (define (cbrt-iter2 guess improved-guess x)
   (if (good-enough? guess improved-guess)
-      guess
+      improved-guess
       (cbrt-iter improved-guess x)))
 
 (define (good-enough? guess improved-guess)

@@ -1,13 +1,18 @@
+\load[tikz]
+
 \fontfam[EBGaramond]
-\typosize[10/12]
+\typosize[11/13]
+\margins/1 a4 (3,3,2.7,2.7)cm
 
 \verbchar`
-\everytt={\hisyntax{scheme}\typoscale[850/850]}
+\def\begscmtt{\begtt\hisyntax{scheme}\typoscale[850/850]}
+\def\begouttt{\begtt\typoscale[850/850]}
 \parindent=0em
+\everymnote{\typoscale[800/800]\Red}
 
-\def\sol #1.#2 {\smallskip\noindent{\bf Solution #1.#2:}\vskip0pt\noindent\input sol-#1.#2}
+\def\sol #1.#2 {\bigskip\filbreak\noindent{\bf Solution #1.#2:}\space\,\input sol-#1.#2}
 \def\sols #1.#2-#3 {\fornum #2..#3 \do {\sol #1.##1 }}
 
-\sols 1.1-11
+\sols 1.1-14
 
 \bye
