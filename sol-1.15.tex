@@ -1,6 +1,6 @@
 \begitems\novspaces\style a
 * The process carried out when evaluating `(sine 12.15)` is the following:
-\begtt
+\begouttt
 (sine 12.5)
 (p (sine 4.166666666666667))
 (p (p (sine 1.388888888888889)))
@@ -15,9 +15,10 @@
 -0.060813768577286265
 \endtt
 We see that `p` is applied $5$ times.
+\smallskip
 * The space and the number of steps needed to evaluate `(sine a)` are both proportional to the number of times $n$ that the angle $a$ gets divided by~$3$ before the resulting angle is less than or equal to~$0.1$, that is
 $$
-n = \min\bigl\{\,x\in \BbbN : {a\over 3^x} \leq 0.1}\,\bigr\} = \bigl\lceil\log_3{a \over 0.1}\bigr\rceil \hbox{.}
+n = \min\bigl\{\,x\in \BbbN : {a\over 3^x} \leq 0.1\,\bigr\} = \bigl\lceil\log_3{a \over 0.1}\bigr\rceil \hbox{.}
 $$ 
 This means that the number of steps and the space required grow as~$\Theta(\log a)$.
 \enditems
