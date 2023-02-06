@@ -1,0 +1,10 @@
+Assuming for simplicity that we are multiplying positive numbers, the requested procedure can be defined as
+\begtt\scm
+(define (* a b)
+  (define (iter a b p)
+    (cond ((= b 0) p)
+          ((even? b) (iter (double a) (halve b) p))
+          (else (iter a (- b 1) (+ p a)))))
+  (iter a b 0))
+\endtt
+Here we added an additional state variable $p$ and defined the transformation in such a way that the quantity $ab + p$ is invariant.  At the beginning $p$ is set to be $0$, and the answer is the value of $p$ at the end of the process.

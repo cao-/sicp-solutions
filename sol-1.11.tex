@@ -1,5 +1,5 @@
 Procedure that computes $f$ by means of a recursive process:
-\begscmtt
+\begtt\scm
 (define (f n)
     (if (< n 3)
         n
@@ -8,7 +8,7 @@ Procedure that computes $f$ by means of a recursive process:
            (* 3 (f (- n 3)))))) 
 \endtt
 Procedure that computes $f$ by means of an iterative process:
-\begscmtt
+\begtt\scm
 (define (f n)
   (define (iter a b c count)
     (if (= count 0)

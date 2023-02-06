@@ -1,5 +1,5 @@
 The `good-enough?` test implemented as 
-\begscmtt
+\begtt\scm
 (define (good-enough? guess x)
     (< (abs (- (square guess) x)) 0.001))
 \endtt
@@ -9,7 +9,7 @@ fails for
 * large numbers: because, since machine numbers are represented with a limited precision, the difference between two consecutive machine numbers increases as the magnitude of those numbers increases, and it will eventually be bigger than the chosen precision.  As an example, the evaluation of `(sqrt 10000000000000)` will never terminate.
 \enditems
 We can solve the problem as suggested, by changing the procedures `sqrt-iter` and `good-enough?` into, for instance,
-\begscmtt
+\begtt\scm
 (define (sqrt-iter guess x)
   (sqrt-iter2 guess (improve guess x) x))
 

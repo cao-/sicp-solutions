@@ -5,8 +5,8 @@
 \margins/1 a4 (3,3,2.7,2.7)cm
 
 \verbchar`
-\def\begscmtt{\begtt\hisyntax{scheme}\typoscale[850/850]}
-\def\begouttt{\begtt\typoscale[850/850]}
+\def\scm{\hisyntax{scheme}\typoscale[900/900]}
+\def\out{\typoscale[900/900]}
 \parindent=0em
 \everymnote{\typoscale[800/800]\Red}
 \sdef{_item:a}{\_athe\_itemnum. \,}
@@ -14,6 +14,6 @@
 \def\sol #1.#2 {\bigskip\filbreak\noindent{\bf Solution #1.#2:}\space\,\input sol-#1.#2}
 \def\sols #1.#2-#3 {\fornum #2..#3 \do {\sol #1.##1 }}
 
-\sols 1.1-16
+\sols 1.1-19
 
 \bye

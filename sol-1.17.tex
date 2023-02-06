@@ -1,0 +1,18 @@
+If we just want to multiply positive numbers, then the procedure can be defined as
+\begtt\scm
+(define (* a b)
+  (cond ((= b 0) 0)
+        ((even? b) (double (* a (halve b))))
+        (else (+ a (* a (- b 1))))))
+\endtt
+Otherwise, by separately handling the case of the second argument being negative, we can define it as 
+\begtt\scm
+(define (* a b)
+  (define (mul-second-positive a b)
+    (cond ((= b 0) 0)
+          ((even? b) (double (* a (halve b))))
+          (else (+ a (* a (- b 1))))))
+  (if (>= b 0)
+      (mul-second-positive a b)
+      (mul-second-positive (- a) (- b))))
+\endtt
