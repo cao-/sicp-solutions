@@ -1,0 +1,8 @@
+To check primality of consecutive odd integers in a specified range we can use this procedure:
+\begtt\scm
+(define (search-for-primes a b)
+  (define (iter i)
+    (cond ((< i b) (timed-prime-test i) (iter (+ 2 i)))))
+  (iter (if (even? a) (+ 1 a) a)))
+\endtt
+The results one can obtain by running this procedure over the specified input ranges\footnote{${}^\dag$}{\typoscale[900/900]I actually had to use larger input values to measure meaningful results, since the time required to run the tests on the provided input ranges was almost negligible on my machine.} seem to confirm the $\Theta(\sqrt n)$ prediction.
