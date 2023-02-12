@@ -1,9 +1,9 @@
-The procedure `p` is such that when called it calls again itself, so it is a never-terminating procedure.
+The procedure `p` is such that when called it calls again itself, so it generates a never-terminating process.
 If the interpreter uses applicative order, then when evaluating
 \begtt\scm
 (test 0 (p))
 \endtt
-it must first evaluate `(p)`, so the procedure will never terminate;  instead, if the interpreter uses normal order, then by substitution the above expression is expanded into
+it must first evaluate `(p)`, so the process will never terminate;  instead, if the interpreter uses normal order, then by substitution the above expression is expanded into
 \begtt\scm
 (if (= 0 0) 0 (p))
 \endtt

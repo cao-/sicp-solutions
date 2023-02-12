@@ -1,18 +1,19 @@
+\def\steps#1{\hskip\ttindent\,\,{\typoscale[1400/]$\downarrow$}{\typoscale[850/]\quad$#1$\ evaluation\ifnum#1=1\else s\fi\ of \code{remainder}}}%
 If we interpret the $\mathop{\rm GCD}$ procedure using normal-order evaluation, and evaluate the expression `(gcd 206 40)`, we generate the following process:
 \begtt\out
 (gcd 206 40)
 \endtt
-\hskip\ttindent\,\,{\typoscale[1400/]$\downarrow$}{\typoscale[700/]\quad$0$\ evaluations of `remainder`}
+\steps0
 \begtt\out
 (gcd 40 (remainder 206 40))
 \endtt
-\hskip\ttindent\,\,{\typoscale[1400/]$\downarrow$}{\typoscale[700/]\quad$1$\ evaluation of `remainder`}
+\steps1
 \begtt\out
 (gcd (remainder 206 40)
      (remainder 40 
                 (remainder 206 40)))
 \endtt
-\hskip\ttindent\,\,{\typoscale[1400/]$\downarrow$}{\typoscale[700/]\quad$2$\ evaluations of `remainder`}
+\steps2
 \begtt\out
 (gcd (remainder 40
                 (remainder 206 40)) 
@@ -20,7 +21,7 @@ If we interpret the $\mathop{\rm GCD}$ procedure using normal-order evaluation, 
                 (remainder 40 
                            (remainder 206 40))))
 \endtt
-\hskip\ttindent\,\,{\typoscale[1400/]$\downarrow$}{\typoscale[700/]\quad$4$\ evaluations of `remainder`}
+\steps4
 \begtt\out
 (gcd (remainder (remainder 206 40)
                 (remainder 40 
@@ -31,13 +32,13 @@ If we interpret the $\mathop{\rm GCD}$ procedure using normal-order evaluation, 
                            (remainder 40
                                       (remainder 206 40)))))
 \endtt
-\hskip\ttindent\,\,{\typoscale[1400/]$\downarrow$}{\typoscale[700/]\quad$7$\ evaluations of `remainder`}
+\steps7
 \begtt\out
 (remainder (remainder 206 40)
            (remainder 40
                       (remainder 206 40)))
 \endtt
-\hskip\ttindent\,\,{\typoscale[1400/]$\downarrow$}{\typoscale[700/]\quad$4$\ evaluations of `remainder`}
+\steps4
 \begtt\out
 2
 \endtt\out
