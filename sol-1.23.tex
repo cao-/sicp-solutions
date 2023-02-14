@@ -1,0 +1,23 @@
+In order to modify the `smallest-divisor` procedure as suggested, we need to change `find-divisor` into:
+\begtt\scm
+(define (find-divisor n test-divisor)
+  (cond ((> (square test-divisor) n) n)
+        ((divides? test-divisor n) test-divisor)
+        (else (find-divisor n (next test-divisor)))))
+(define (next test-divisor)
+  (if (= test-divisor 2)
+      3
+      (+ test-divisor 2)))
+\endtt
+When running the timed prime tests one should see that the runtime is reduced, but not as much as to meet the expectation of being twice as fast\fnote{On my machine, using MIT/GNU Scheme Release 12.1, the observed ratio between the old and the new version of the algorithm was approximately~$1.55$, instead of the expected~$2$.}.  This happens because the `next` procedure, besides performing an addition, also has to test the value of its argument, so it is not as fast as the `+` procedure alone. 
+
+In order to almost meet the expectation of halving the times\fnote{In my test I got a ratio of about $1.98$.}, we could alternatively move the conditional check at the beginning and define the `smallest-divisor` procedure as follows:
+\begtt\scm
+(define (smallest-divisor n) (find-divisor n))
+(define (find-divisor n)
+  (if (even? n) 2 (find-odd-divisor n 3)))
+(define (find-odd-divisor n test-divisor)
+  (cond ((> (square test-divisor) n) n)
+        ((divides? test-divisor n) test-divisor)
+        (else (find-divisor-odd n (+ test-divisor 2)))))
+\endtt
