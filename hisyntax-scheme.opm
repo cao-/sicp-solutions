@@ -10,11 +10,8 @@
    \_hicolor S {\_visiblesp \Grey} % Single line strings
    \_hicolor C \Green      % Comments
    \_hicolor K \MediumBlue % Keywords
-   \_hicolor O \DarkGrey   % Operators
-   \_hicolor N \DarkGrey   % Numbers
-   \_hicolor D \Magenta    % def names
-   \_hicolor L \Black      % class names
-   \_hicolor R \Magenta    % Decorators
+   \_hicolor O \Black   % Operators
+   \_hicolor N \Black   % Numbers
 }
 \_global\_hisyntaxscheme={%
    \_the\_hicolorsscheme
@@ -39,7 +36,7 @@
        \_do {\_replthis{#1}{\n\o#1\n}}
    %
    \_foreach                                 % keywords
-      {and}{if}{cond}{lambda}{not}{or}{define}
+      {and}{if}{else}{cond}{lambda}{not}{or}{define}
       \_do {\_replthis{\n#1\n}{\z K{#1}}}
    %
    \_foreach
