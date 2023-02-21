@@ -30,8 +30,7 @@
    \_def\s{}
    \_edef\_tmpb{\_tmpb}
    %
-   \_edef \_tmpa {+-*./=<>()[]:,;!|\_pcent   % operators
-        \_string{\_string}@\_string&\_string~\_string^}
+   \_edef \_tmpa {()}
    \_ea\_foreach \_tmpa 
        \_do {\_replthis{#1}{\n\o#1\n}}
    %

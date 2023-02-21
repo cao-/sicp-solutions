@@ -1,0 +1,11 @@
+The following procedure determines whether a number $n$ (which is not prime) is a Carmichael number:
+\begtt\scm
+(define (carmichael? n)
+  (define (test a)
+    (= (expmod a n n) a))
+  (define (iter a)
+    (cond ((= a n) true)
+          ((test a) (iter (+ a 1)))
+          (else false)))
+  (iter 0))
+\endtt
