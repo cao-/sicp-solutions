@@ -1,20 +1,20 @@
 \def\steps#1{\hskip\ttindent\,\,{\typoscale[1400/]$\downarrow$}{\typoscale[850/]\quad$#1$\ evaluation\ifnum#1=1\else s\fi\ of \code{remainder}}}%
 If we interpret the $\mathop{\rm GCD}$ procedure using normal-order evaluation, and evaluate the expression `(gcd 206 40)`, we generate the following process:
-\begtt\out
+\begtt\scm
 (gcd 206 40)
 \endtt
 \steps0
-\begtt\out
+\begtt\scm
 (gcd 40 (remainder 206 40))
 \endtt
 \steps1
-\begtt\out
+\begtt\scm
 (gcd (remainder 206 40)
      (remainder 40 
                 (remainder 206 40)))
 \endtt
 \steps2
-\begtt\out
+\begtt\scm
 (gcd (remainder 40
                 (remainder 206 40)) 
      (remainder (remainder 206 40)
@@ -22,7 +22,7 @@ If we interpret the $\mathop{\rm GCD}$ procedure using normal-order evaluation, 
                            (remainder 206 40))))
 \endtt
 \steps4
-\begtt\out
+\begtt\scm
 (gcd (remainder (remainder 206 40)
                 (remainder 40 
                            (remainder 206 40)))
@@ -33,15 +33,15 @@ If we interpret the $\mathop{\rm GCD}$ procedure using normal-order evaluation, 
                                       (remainder 206 40)))))
 \endtt
 \steps7
-\begtt\out
+\begtt\scm
 (remainder (remainder 206 40)
            (remainder 40
                       (remainder 206 40)))
 \endtt
 \steps4
-\begtt\out
+\begtt\scm
 2
-\endtt\out
+\endtt
 Each time that $\mathop{\rm GCD}$ is applied, its second argument must be evaluated in order to test if it is zero. In total the process performs $18$ `remainder` operations.
 
 Instead, if we use applicative-order evaluation, we need to perform only $4$ `remainder` operations.

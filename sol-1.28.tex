@@ -1,0 +1,31 @@
+Following the suggestion of making `expmod` signal, a `fast-prime?` procedure based on the Miller-Rabin test can be implemented in the following way:
+\begtt\scm
+(define (fast-prime? n times)
+  (cond ((= times 0) true)
+        ((miller-rabin-test n) (fast-prime? n (- times 1)))
+        (else false)))
+
+(define (miller-rabin-test n)
+  (define (try-it a)
+    (= (expmod a (- n 1) n) 1))
+  (or (= n 2)
+      (and (odd? n)
+           (try-it (+ 1 (random (- n 1)))))))
+
+(define (expmod base exp m)
+  (define (value-or-zero value)
+    (if (= value 1) 0 value))
+  (define (squaremod-or-zero x)
+    (if (or (= x 1) (= x (- m 1)))
+        1
+        (value-or-zero (remainder (square x) m))))
+  (define (expmod exp)
+    (cond ((= exp 0) 1)
+          ((even? exp)
+           (squaremod-or-zero (expmod (/ exp 2))))
+          (else
+           (remainder
+             (* base (expmod (- exp 1)))
+             m))))
+  (expmod exp))
+\endtt

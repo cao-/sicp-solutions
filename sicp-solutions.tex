@@ -3,21 +3,28 @@
 \hyperlinks \Pink \Green
 \fnotelinks \Black \Black
 \fontfam[EBGaramond]
+\fontfam[LM]
+\fontfam[New Computer Modern]
+\EBGaramond
 \typosize[11/13]
 \margins/1 a4 (3,3,2.7,2.7)cm
 
 \verbchar`
-\def\scm{\hisyntax{scheme}\typoscale[900/900]}
-\def\out{\typoscale[900/900]}
-\parindent=0em
+\everytt{\typoscale[900/900]}
+\def\scm{\hisyntax{scheme}}
+%\famvardef\tt{\NewCM\setff{-liga;-tlig}\ttset\rm}
+\famvardef\sltt{\LMfonts\setff{-liga;-tlig}\ttset\slant\it}
+\ttindent=1.2em
+\parindent=1.2em
+\fixmnotes\right
 \everymnote{\typoscale[800/800]\Red}
 \sdef{_item:a}{\_athe\_itemnum. \,}
 \fnotenumpages
 \def \_printfnotemark {\ifcase 0\fnotenum \or$^\mathbox{†}$\or$^\mathbox{‡}$\or$^\mathbox{††}$\fi}
 
-\def\sol #1.#2 {\bigskip\filbreak\noindent{\bf Solution #1.#2:}\space\,\input sol-#1.#2}
+\def\sol #1.#2 {\bigskip\filbreak\noindent{\bf Solution #1.#2:}\space\,\_firstnoindent\input sol-#1.#2}
 \def\sols #1.#2-#3 {\fornum #2..#3 \do {\sol #1.##1 }}
 
-\sols 1.1-27
+\sols 1.1-28
 
 \bye
