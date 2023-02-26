@@ -1,0 +1,28 @@
+Here is a possible definition of the `simpson` procedure:
+\begtt\scm
+(define (simpson f a b n)
+  (define (simpson f a b h)
+    (define (next x)
+      (+ x (* 2 h)))
+    (define (term x)
+      (+ (f (- x h))
+         (* 4 (f x))
+         (f (+ x h))))
+    (* (/ h 3)
+       (sum term (+ a h) next b)))
+  (simpson f a b (* 1.0 (/ (- b a) n))))
+\endtt
+It was obtained after noticing that
+$$
+\displaylines to .7\hsize{
+  {h \over 3}[y_0 + 4y_1 + 2y_2 + 4y_3 + 2y_4 + \cdots + 2y_{n-2} + 4y_{n-1} + y_n] =\hfill\cr 
+  \hfill= {h \over 3}[(y_0 + 4y_1 + y_2) + (y_2 + 4y_3 + y_4) + \cdots + (y_{n-2} + 4y_{n-1} + y_n)]\hbox{.}
+} $$
+If we use it to integrate the `cube` function between $0$ and $1$ with $n=100$ and $n=1000$, we obtain:
+\begtt\scm
+(simpson cube 0 1 100)
+;Value:0.25000000000000044
+(simpson cube 0 1 1000)
+;Value:0.2500000000000006
+\endtt
+Simpson's rule is known to provide exact results for polynomials of degree three or less, so we should get the exact value of $0.25$ for each value of $n$.  The difference we see is due to numerical truncation errors.
