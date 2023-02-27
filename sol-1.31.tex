@@ -1,0 +1,43 @@
+\begitems\novspaces\style a
+* The `product` procedure can be defined as follows:
+\begtt\scm
+(define (product term a next b)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a) (* result (term a)))))
+  (iter a 1))
+\endtt
+Then we can define `factorial` and `pi-product`
+\begtt\scm
+(define (factorial n)
+  (define (identity x) x)
+  (define (inc x) (+ 1 x))
+  (product identity 1 inc n))
+
+(define (pi-product n)
+  (define (pi-term x)
+    (/ (* x (+ 2 x))
+       (square (+ 1 x))))
+  (define (pi-next x)
+    (+ 2 x))
+  (product pi-term 2.0 pi-next (* 2 n)))
+\endtt
+and compute some approximations of $\pi$:
+\begtt\scm
+(* 4 (pi-product 100))
+;Value:3.149378473168601
+(* 4 (pi-product 1000))
+;Value:3.1423773650938855
+(* 4 (pi-product 10000))
+;Value:3.1416711865345
+\endtt
+* The above defined `product` procedure generates an iterative process;  here is one that generates a recursive process:
+\begtt\scm
+(define (product term a next b)
+  (if (> a b)
+      1
+      (* (term a)
+         (product term (next a) next b))))
+\endtt
+\enditems
