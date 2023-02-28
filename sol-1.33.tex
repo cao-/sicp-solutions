@@ -1,0 +1,26 @@
+Here is a `filtered-accumulate` procedure (that generates an iterative process):
+\begtt\scm
+(define (filtered-accumulate filter combiner null-value term a next b)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a)
+              (if (filter a)
+                  (combiner result (term a))
+                  result))))
+  (iter a null-value))
+\endtt
+\begitems\novspaces\style a
+* The sum of the squares of the prime numbers in the interval $a$ to $b$ can be expressed by
+\begtt\scm
+(define (s a b)
+  (filtered-accumulate prime? + 0 square a inc b))
+\endtt
+* The product of all positive integers less than $n$ that are relatively prime to $n$ can be expressed by
+\begtt\scm
+(define (p n)
+  (define (relatively-prime? i)
+    (= 1 (gcd i n)))
+  (filtered-accumulate relatively-prime? * 1 identity 1 inc (- n 1)))
+\endtt
+\enditems
