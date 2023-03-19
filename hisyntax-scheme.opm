@@ -36,7 +36,7 @@
        \_do {\_replthis{#1}{\n\o#1\n}}
    %
    \_foreach                                 % keywords
-      {and}{if}{else}{cond}{lambda}{or}{define}
+      {and}{if}{else}{cond}{lambda}{or}{define}{let}
       \_do {\_replthis{\n#1\n}{\z K{#1}}}
    %
    \_foreach

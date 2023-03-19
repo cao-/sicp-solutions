@@ -1,5 +1,4 @@
-\load[tikz]\let\foreach=\_pgf_foreach
-\load[mte]\enablemte
+\load[tikz, mte]\enablemte
 
 \hyperlinks \Pink \Green
 \fnotelinks \Black \Black
@@ -26,6 +25,6 @@
 \def\sol #1.#2 {\bigskip\filbreak\noindent{\bf Solution #1.#2:}\space\,\_firstnoindent\input sol-#1.#2}
 \def\sols #1.#2-#3 {\fornum #2..#3 \do {\sol #1.##1 }}
 
-\sols 1.1-34
+\sols 1.1-35
 
 \bye
