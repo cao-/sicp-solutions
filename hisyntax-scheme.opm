@@ -20,6 +20,7 @@
    \_replthis{\_string\'}{{\_string\'}}
    %
    \_replfromto{\_string;Value:}{^^J}{\z U{\sltt#1\smallskip}^^J} % outputs
+   \_replfromto{\_string;Display:}{^^J}{\z C{#1}^^J} % displays
    \_replfromto{\_string;}{^^J}{\z C{;#1}^^J} % comments
    %
    \_replthis{"}{\_noexpand\_hipystr2{"}S}

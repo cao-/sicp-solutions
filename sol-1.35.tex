@@ -1,5 +1,5 @@
 By definition, the golden ration $\phi$ satisfies the equation $\phi^2 = \phi + 1$, and hence the equivalent equation $\phi = 1 + 1/\phi$.  This means that $\phi$ is a fixed point of the transformation $x \mapsto 1 + 1/x$.
-If we apply the `fixed-point` procedure to that transformation, starting with a first guess of $1$, we get:
+Here is the result of applying the `fixed-point` procedure to this transformation, starting with a first guess of~$1$:
 \begtt\scm
 (fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0)
 ;Value:1.6180327868852458
