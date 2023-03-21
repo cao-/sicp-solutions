@@ -1,0 +1,58 @@
+\begitems\novspaces\style a
+* The `cont-frac` procedure can be defined as follows:
+\begtt\scm
+(define (cont-frac n d k)
+  (define (term-from j)
+    (if (> j k)
+        0
+        (/ (n j)
+           (+ (d j) (term-from (+ j 1))))))
+  (term-from 1))
+\endtt
+Then we can compute approximations of $1/\phi$:
+\begtt\scm
+(define (one-over-phi k)
+  (cont-frac (lambda (i) 1.0)
+             (lambda (i) 1.0)
+             k))
+
+(one-over-phi 1)
+;Value:1.0
+(one-over-phi 2)
+;Value:0.5
+(one-over-phi 3)
+;Value:0.6666666666666666
+(one-over-phi 4)
+;Value:0.6000000000000001
+(one-over-phi 5)
+;Value:0.625
+(one-over-phi 6)
+;Value:0.6153846153846154
+(one-over-phi 7)
+;Value:0.6190476190476191
+(one-over-phi 8)
+;Value:0.6176470588235294
+(one-over-phi 9)
+;Value:0.6181818181818182
+(one-over-phi 10)
+;Value:0.6179775280898876
+(one-over-phi 11)
+;Value:0.6180555555555556
+(one-over-phi 12)
+;Value:0.6180257510729613
+(one-over-phi 13)
+;Value:0.6180371352785146
+\endtt
+We see that with $k=11$ we already have an approximation that is accurate to $4$ decimal places.
+* The above defined `cont-frac` procedure generates a recursive process.  Here is one that generates an iterative process:
+\begtt\scm
+(define (cont-frac n d k)
+  (define (iter j result)
+    (if (> j 0)
+        (iter (- j 1)
+              (/ (n j)
+                 (+ (d j) result)))
+        result))
+  (iter k 0))
+\endtt
+\enditems
