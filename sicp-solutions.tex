@@ -12,8 +12,8 @@
 \verbchar`
 \everytt{\typoscale[900/900]}
 \def\scm{\hisyntax{scheme}}
-%\famvardef\tt{\NewCM\setff{-liga;-tlig}\ttset\rm}
-\famvardef\sltt{\LMfonts\setff{-liga;-tlig}\ttset\slant\it}
+\famvardef\tt{\NewCM\ttset\rm}
+\famvardef\sltt{\LMfonts\ttset\slant\it}
 \ttindent=2em
 \parindent=1em
 \fixmnotes\right
@@ -21,11 +21,12 @@
 \sdef{_item:a}{\_athe\_itemnum. \,}
 \fnotenumpages
 \def \_printfnotemark {\ifcase 0\fnotenum \or$^\mathbox{†}$\or$^\mathbox{‡}$\or$^\mathbox{††}$\fi}
-%\def \_interliskip {\smallskip}
-\def\filbreak{\_par \_vfil \_penalty 0\_vfilneg}
+\olistskipamount=0pt
+\itemskipamount=1.2\smallskipamount
+\def\filbreak{\_par \_vfil \_penalty -10\_vfilneg}
 \def\sol #1.#2 {\bigskip\filbreak\noindent{\bf Solution #1.#2:}\space\,\_firstnoindent\input sol-#1.#2}
 \def\sols #1.#2-#3 {\fornum #2..#3 \do {\sol #1.##1 }}
 
-\sols 1.1-37
+\sols 1.1-39
 
 \bye

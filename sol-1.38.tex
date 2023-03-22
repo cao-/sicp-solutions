@@ -1,0 +1,40 @@
+Here is a procedure to compute the $k$-term finite continued fraction of~$e - 2$:
+\begtt\scm 
+(define (euler-cont-frac k)
+  (define (n i) 1.0)
+  (define (d i)
+    (let ((r (remainder i 3)))
+      (if (= r 2)
+          (* 2.0 (+ (/ (- i r) 3) 1))
+          1.0)))
+  (cont-frac n d k))
+\endtt
+We can use it to find approximations of $e$: 
+\begtt\scm
+(+ 2 (euler-cont-frac 1))
+;Value:3.0
+(+ 2 (euler-cont-frac 2))
+;Value:2.6666666666666665
+(+ 2 (euler-cont-frac 3))
+;Value:2.75
+(+ 2 (euler-cont-frac 4))
+;Value:2.7142857142857144
+(+ 2 (euler-cont-frac 5))
+;Value:2.71875
+(+ 2 (euler-cont-frac 6))
+;Value:2.717948717948718
+(+ 2 (euler-cont-frac 7))
+;Value:2.7183098591549295
+(+ 2 (euler-cont-frac 8))
+;Value:2.718279569892473
+(+ 2 (euler-cont-frac 9))
+;Value:2.718283582089552
+(+ 2 (euler-cont-frac 10))
+;Value:2.7182817182817183
+(+ 2 (euler-cont-frac 11))
+;Value:2.7182818352059925
+(+ 2 (euler-cont-frac 12))
+;Value:2.7182818229439496
+(+ 2 (euler-cont-frac 13))
+;Value:2.718281828735696
+\endtt

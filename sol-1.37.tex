@@ -1,4 +1,4 @@
-\begitems\novspaces\style a
+\begitems\style a
 * The `cont-frac` procedure can be defined as follows:
 \begtt\scm
 (define (cont-frac n d k)
@@ -43,7 +43,7 @@ Then we can compute approximations of $1/\phi$:
 (one-over-phi 13)
 ;Value:0.6180371352785146
 \endtt
-We see that with $k=11$ we already have an approximation that is accurate to $4$ decimal places.
+We see that a value of $k=11$ is enough to have an approximation that is accurate to $4$ decimal places.
 * The above defined `cont-frac` procedure generates a recursive process.  Here is one that generates an iterative process:
 \begtt\scm
 (define (cont-frac n d k)

@@ -1,0 +1,8 @@
+The procedure `tan-cf` can be defined as follows:
+\begtt\scm 
+(define (tan-cf x k)
+  (cont-frac (let ((y (- (square x))))
+               (lambda (i) (if (= i 1) x y)))
+             (lambda (i) (- (* 2.0 i) 1))
+             k))
+\endtt
