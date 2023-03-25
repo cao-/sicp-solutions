@@ -1,0 +1,20 @@
+The `double` procedure can be defined as follows:
+\begtt\scm 
+(define (double f)
+  (lambda (x) (f (f x))))
+\endtt
+Then we can evaluate the given expression:
+\begtt\scm
+(((double (double double)) inc) 5)
+;Value:21
+\endtt
+
+Let's try to understand what's going on. Evaluating `(double double)` gives the procedure that applies `double` twice to its argument.  Therefore, evaluating `(double (double double))` gives the procedure that applies `double` four times to its argument.  This means that
+\begtt\scm
+((double (double double)) inc)
+\endtt
+is equivalent to
+\begtt\scm
+(double (double (double (double inc))))
+\endtt
+This last expression gives the procedure that applies `inc` to its argument $2^4=16$~times. When we apply it to the number~$5$ we get the result $5+16=21.
