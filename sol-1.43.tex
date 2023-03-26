@@ -1,0 +1,41 @@
+There are at least two different ways to define the `repeated` procedure.
+\begitems
+* One way is to build up a new procedure by repeated composition, starting from the `identity` procedure.
+This can be done recursively:
+\begtt\scm 
+(define (repeated f n)
+  (if (= n 0)
+      identity
+      (compose f (repeated f (dec n)))))
+\endtt
+or iteratively:
+\begtt\scm 
+(define (repeated f n)
+  (define (iter result n)
+    (if (= n 0)
+        result
+        (iter (compose f result) (dec n))))
+  (iter identity n))
+\endtt
+Anyhow, we need $\Theta(n)$ space to store the resulting procedure---if $n$ is large, then this could be an issue.
+* Another possibility that requires $\Theta(1)$ space, is to create a new procedure that when evaluated will repeatedly apply the given function, either generating a recursive process:
+\begtt\scm
+(define (repeated f n)
+  (define (repeated-f n x)
+    (if (= n 0)
+        x
+        (f (repeated-f (dec n) x))))
+  (lambda (x)
+    (repeated-f n x)))
+\endtt
+or an iterative process:
+\begtt\scm
+(define (repeated f n)
+  (define (iter result n)
+    (if (= n 0)
+        result
+        (iter (f result) (- n 1))))
+  (lambda (x)
+    (iter x n)))
+\endtt
+\enditems
