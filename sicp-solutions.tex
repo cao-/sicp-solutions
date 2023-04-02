@@ -3,6 +3,24 @@
 \hyperlinks \Pink \Green
 \fnotelinks \Black \Black
 \fontfam[EBGaramond]
+\directlua
+  {fonts.handlers.otf.addfeature 
+    {
+    name = "kerncorr",
+    type = "kern",
+    data = {
+    ["("] = { ["𝑓"] = 80, ["𝑔"] = 60, ["𝑦"] = 80 },
+    ["["] = { ["𝑓"] = 80, ["𝑔"] = 60, ["𝑦"] = 80 },
+    }
+  }
+}
+\_def\_normalmath{%
+    \_loadumathfamily 1 {[Garamond-Math]}{+kerncorr} % Base font
+    \_loadmathfamily  4 rsfs              % script
+    \_setunimathdimens
+}%
+\normalmath % we must reload Math font collection with {+kerncorr} again.
+
 \fontfam[LM]
 \fontfam[New Computer Modern]
 \EBGaramond
@@ -34,6 +52,6 @@
 \footline = {\hss \rmfixed \folio \hss}
 
 \chap Building Abstractions with Procedures
-\sols 1.1-44
+\sols 1.1-45
 
 \bye

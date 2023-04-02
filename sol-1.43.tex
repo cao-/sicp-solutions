@@ -18,7 +18,7 @@ or iteratively:
   (iter identity n))
 \endtt
 Anyhow, we need $\Theta(n)$ space to store the resulting procedure---if $n$ is large, then this could be an issue.
-* Another possibility that requires $\Theta(1)$ space, is to create a new procedure that when evaluated will repeatedly apply the given function, either generating a recursive process:
+* Another possibility that requires $\Theta(1)$ space, is to create a new procedure that when evaluated will repeatedly apply the given procedure, either generating a recursive process:
 \begtt\scm
 (define (repeated f n)
   (define (repeated-f n x)

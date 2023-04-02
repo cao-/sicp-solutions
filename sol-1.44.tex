@@ -2,10 +2,12 @@ Here is how to define the procedure `smooth`:
 \begtt\scm 
 (define (smooth f)
   (lambda (x)
-    (/ (+ (f (- x dx)) (f x) (f (+ x dx)))
+    (/ (+ (f (- x dx))
+          (f x)
+          (f (+ x dx)))
        3)))
 \endtt
-In order to obtain the procedure that computes the $n$-fold smoothed version of the function computed by a given procedure~$f$, we simply evaluate
+In order to obtain the procedure that computes the $n$-fold smoothed version of the function computed by a given procedure `f`, we simply evaluate
 \begtt\scm
 ((repeated smooth n) f)
 \endtt
