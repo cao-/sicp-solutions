@@ -1,0 +1,26 @@
+The described procedure can be implemented as follows:
+\begtt\scm
+(define (iterative-improve good-enough? improve)
+  (define (try guess)
+    (if (good-enough? guess)
+      guess
+      (try (improve guess))))
+  try)
+\endtt
+Then it is straightforward to rewrite the procedure `sqrt` of section~1.1.7:
+\begtt\scm
+(define (sqrt x)
+  (define (good-enough? guess)
+    (< (abs (- (square guess) x)) 0.001))
+  (define (improve guess)
+    (average guess (/ x guess)))
+  ((iterative-improve good-enough? improve) 1.0))
+\endtt
+To obtain a procedure `fixed-point` equivalent to that of section~1.3.3, instead we must recast the procedure `close-enough?` that takes two arguments into a procedure `good-enough?` that takes one argument only:
+\begtt\scm
+(define (fixed-point f first-guess)
+  (define (good-enough? guess)
+    (< (abs (- guess (f guess))) 0.00001))
+  (f ((iterative-improve good-enough? f) first-guess)))
+\endtt
+This way we obtain a procedure that produces the same results as the original one, but is less efficient since it requires to repeat each evaluation of `f` twice.
