@@ -1,0 +1,49 @@
+\load[tikz, mte]\enablemte
+
+\hyperlinks \Pink \Green
+\fnotelinks \Black \Black
+\fontfam[EBGaramond]
+\directlua
+  {fonts.handlers.otf.addfeature 
+    {
+    name = "kerncorr",
+    type = "kern",
+    data = {
+    ["("] = { ["𝑓"] = 80, ["𝑔"] = 60, ["𝑦"] = 80 },
+    ["["] = { ["𝑓"] = 80, ["𝑔"] = 60, ["𝑦"] = 80 },
+    }
+  }
+}
+\_def\_normalmath{%
+    \_loadumathfamily 1 {[Garamond-Math]}{+kerncorr} % Base font
+    \_loadmathfamily  4 rsfs              % script
+    \_setunimathdimens
+}%
+\normalmath % we must reload Math font collection with {+kerncorr} again.
+
+\fontfam[LM]
+\fontfam[New Computer Modern]
+\EBGaramond
+\typosize[11/13]
+\margins/1 a4 (3,3,3,3)cm
+
+\verbchar`
+\everytt{\typoscale[900/900]}
+\def\scm{\hisyntax{scheme}}
+\famvardef\tt{\NewCM\ttset\rm}
+\famvardef\sltt{\LMfonts\ttset\slant\it}
+\ttindent=2em
+\parindent=1em
+\fixmnotes\right
+\everymnote{\typoscale[800/800]\Red}
+\sdef{_item:a}{\_athe\_itemnum. \,}
+\fnotenumpages
+\def \_printfnotemark {\ifcase 0\fnotenum \or$^\mathbox{†}$\or$^\mathbox{‡}$\or$^\mathbox{††}$\fi}
+\olistskipamount=0pt
+\itemskipamount=1.2\smallskipamount
+\def\filbreak{\_par \_vfil \_penalty -10\_vfilneg}
+\def\sol #1.#2 {\bigskip\filbreak\noindent{\bf Solution #1.#2:}\space\,\_firstnoindent\input sol-#1.#2}
+\def\solrange #1.#2-#3 {\fornum #2..#3 \do {\sol #1.##1 }}
+\def\sols {\solsA{\_thechapnum}{1}}
+\newread\solread
+\def\solsA#1#2{\openin\solread=sol-#1.#2 \ifeof\solread\else\sol #1.#2 \tmpnum=#2 \incr\tmpnum\solsA{#1}{\the\tmpnum}\fi}
