@@ -1,0 +1,14 @@
+We can improve `make-rat` in the following way:
+\begtt\scm
+(define (make-rat n d)
+  (let ((g (gcd n d))
+        (s (* (sign n) (sign d))))
+    (cons (/ (* s (abs n)) g) (/ (abs d) g))))
+\endtt
+Here `sign` is a procedure that computes the sign function, that is
+\begtt\scm
+(define (sign x)
+  (cond ((> x 0) 1)
+        ((< x 0) -1)
+        (else 0)))
+\endtt
