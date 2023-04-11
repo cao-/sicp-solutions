@@ -1,0 +1,54 @@
+Let's assume for simplicity that we want to represent only rectangles with sides parallel to the orthogonal cartesian axes describing the plane they belong to.
+Here are two ways we can use to represent such a rectangle:
+\begitems\style n
+* We can describe it simply by giving one of its diagonals (a segment).
+
+Constructor:
+\begtt\scm
+(define (make-rectangle diagonal)
+  diagonal)
+\endtt
+
+Some selectors:
+\begtt\scm
+(define (base r)
+  (abs (- (x-point (start-segment r))
+          (x-point (end-segment r)))))
+
+(define (height r)
+  (abs (- (y-point (start-segment r))
+          (y-point (end-segment r)))))
+\endtt
+* Alternatively, we can describe it by giving its upper-left vertex (a point) and the lengths of its sides (positive numbers).
+\smallskip
+
+Constructor:
+\begtt\scm
+(define (make-rectangle upper-left-vertex base height)
+  (cons upper-left-vertex
+        (cons base height)))
+\endtt
+
+Some selectors:
+\begtt\scm
+(define (base r)
+  (car (cdr r)))
+
+(define (height r)
+  (cdr (cdr r)))
+\endtt
+\enditems
+\begtt\scm
+\endtt
+
+For both representations of a rectangle we defined the selectors `base` and `height` that give respectively the length of the horizontal and vertical sides of the rectangle.
+These selectors are abstraction barriers that allow us to define the procedures for computing the perimeter and area of any rectangle, without knowing its representation:
+\begtt\scm
+(define (perimeter r)
+  (* 2 (+ (base r)
+          (height r))))
+
+(define (area r)
+  (* (base r)
+     (height r)))
+\endtt
