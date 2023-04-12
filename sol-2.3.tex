@@ -1,7 +1,7 @@
-Let's assume for simplicity that we want to represent only rectangles with sides parallel to the orthogonal cartesian axes describing the plane they belong to.
+Let's assume for simplicity that we want to represent only rectangles with horizontal and vertical sides.
 Here are two ways we can use to represent such a rectangle:
 \begitems\style n
-* We can describe it simply by giving one of its diagonals (a segment).
+* We can describe it simply by giving one of its diagonals (a segment of exercise~2.2).
 
 Constructor:
 \begtt\scm
@@ -19,7 +19,7 @@ Some selectors:
   (abs (- (y-point (start-segment r))
           (y-point (end-segment r)))))
 \endtt
-* Alternatively, we can describe it by giving its upper-left vertex (a point) and the lengths of its sides (positive numbers).
+* Alternatively, we can describe it by giving its upper-left vertex (a point of exercise~2.2) and the lengths of its sides (positive numbers).
 \smallskip
 
 Constructor:

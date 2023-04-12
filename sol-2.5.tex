@@ -1,0 +1,20 @@
+We can indeed represent a pair of nonnegative integers~$a, b$ as the product $2^a 3^{\smash{b}}$, because the function $(a, b)\mapsto 2^a 3^b$ is injective, by the {\em fundamental theorem of arithmetic}. 
+Here are possible definitions for `cons`, `car`, and `cdr`:
+\begtt\scm
+(define (cons a b)
+  (* (expt 2 a) (expt 3 b)))
+
+(define (car p)
+  (define (iter p result)
+    (if (= 0 (remainder p 2))
+        (iter (/ p 2) (inc result))
+        result))
+  (iter p 0))
+
+(define (cdr p)
+  (define (iter p result)
+    (if (= 0 (remainder p 3))
+        (iter (/ p 3) (inc result))
+        result))
+  (iter p 0))
+\endtt
