@@ -1,0 +1,49 @@
+Using substitution we can evaluate the number `one`:
+\begtt\scm
+one
+(add-1 zero)
+(lambda (f) (lambda (x) (f ((zero f) x))))
+(lambda (f) (lambda (x) (f (((lambda (f) (lambda (x) x)) f) x))))
+(lambda (f) (lambda (x) (f ((lambda (x) x) x))))
+(lambda (f) (lambda (x) (f x)))
+\endtt
+In the same way, we can evaluate the number `two`:
+\begtt\scm
+two
+(add-1 one)
+(lambda (f) (lambda (x) (f ((one f) x))))
+(lambda (f) (lambda (x) (f (((lambda (f) (lambda (x) (f x))) f) x))))
+(lambda (f) (lambda (x) (f ((lambda (x) (f x)) x))))
+(lambda (f) (lambda (x) (f (f x))))
+\endtt
+
+It should be apparent that, in general, the number $n$ is the procedure that takes as input a procedure~`f` and returns the procedure that applies `f` to its argument $n$~times.
+With this in mind, we can define the addition procedure:
+\begtt\scm
+(define (+ m n)
+  (lambda (f) (lambda (x) ((m f) ((n f) x)))))
+\endtt
+or, more concisely,
+\begtt\scm
+(define (+ m n)
+  (lambda (f) (compose (m f) (n f))))
+\endtt
+with `compose` being the procedure of exercise~1.42.
+
+In order to see if the addition procedure works, we can convert the Church numerals into ordinary numbers with the following procedure:
+\begtt\scm
+(define (convert n)
+  ((n inc) 0))
+\endtt
+Then, we can evaluate the following expressions:
+\begtt\scm
+(convert one)
+;Value:1
+(convert two)
+;Value:2
+(convert (+ one two))
+;Value:3
+(let ((three (+ one two)))
+  (convert (+ three two)))
+;Value:5
+\endtt
