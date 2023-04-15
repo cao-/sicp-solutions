@@ -1,0 +1,8 @@
+To subtract two intervals, we can add to the first the opposite\fnote{If $x$ is an interval, with its “opposite”, denoted by $-x$, we mean the image of $x$ under the function $y\mapsto -y$. In other words, it is the set obtained by taking the opposite of each number in the interval~$x$. Notice, however, that $-x$ is not the algebraic opposite of $x$, since in general $x+(-x)$ is different from the interval $[0,0
+]$, which is the neutral element of the addition of intervals.} of the second.  Note that the bounds of the opposite interval are the opposite of the upper bound and the opposite of the lower bound, in that order.
+\begtt\scm
+(define (sub-interval x y)
+  (add-interval x
+                (make-interval (- (upper-bound y))
+                               (- (lower-bound y)))))
+\endtt
