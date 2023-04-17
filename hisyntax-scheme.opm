@@ -6,7 +6,7 @@
 \_global\_hicolorsscheme={% colors for Scheme language
    \_colordef \MediumBlue {.5\LightBlue + .5\Blue}
    \_hicolor M \Orange    % Multi line strings
-   \_hicolor S {\_visiblesp \Grey} % Single line strings
+   \_hicolor S \Red % Single line strings
    \_hicolor C \Green      % Comments
    \_hicolor K \MediumBlue % Keywords
    \_hicolor O \Black   % Operators
