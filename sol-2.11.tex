@@ -1,4 +1,4 @@
-We can break the procedure `mul-interval` into nine cases.  Eight of these cases require two multiplications only, while the remaining one requires four multiplications.
+An interval can have either both extrema $<0$, or both extrema $\geq 0$, or one extrema $<0$ and the other $\geq 0$. Since we multiply two intervals, in total there are $3^2$ cases.  Eight of these cases require two multiplications only, while the remaining one requires four multiplications.
 \begtt\scm
 (define (mul-interval x y)
   (let ((a (lower-bound x))
@@ -10,23 +10,23 @@ We can break the procedure `mul-interval` into nine cases.  Eight of these cases
           ((and (>= a 0) (< c 0) (>= d 0))
            (make-interval (* b c) (* b d)))
           ((and (>= a 0) (< d 0))
-           (make-interval (* b d) (* a c)))
+           (make-interval (* b c) (* a d)))
           ((and (< a 0) (>= b 0) (>= c 0))
-           (make-interval (* a d) (b d)))
+           (make-interval (* a d) (* b d)))
           ((and (< a 0) (>= b 0) (< c 0) (>= d 0))
            (make-interval (min (* a d) (* b c))
                           (max (* b d) (* a c))))
           ((and (< a 0) (>= b 0) (< d 0))
-           (make-interval (* b d) (* a d)))
+           (make-interval (* b c) (* a c)))
           ((and (< b 0) (>= c 0))
-           (make-interval (* b d) (* a c)))
+           (make-interval (* a d) (* b c)))
           ((and (< b 0) (< c 0) (>= d 0))
-           (make-interval (* b d) (* b c)))
+           (make-interval (* a d) (* a c)))
           ((and (< b 0) (< d 0))
-           (make-interval (* a c) (b d))))))
+           (make-interval (* b d) (* a c))))))
 \endtt
 
-We can also avoid redundant tests of conditions by rewriting it in the following way:
+We can also avoid redundant checks by rewriting the procedure in the following way:
 \begtt\scm
 (define (mul-interval x y)
   (let ((a (lower-bound x))
@@ -38,17 +38,17 @@ We can also avoid redundant tests of conditions by rewriting it in the following
             (make-interval (* a c) (* b d))
             (if (>= d 0)
                 (make-interval (* b c) (* b d))
-                (make-interval (* b d) (* a c))))
+                (make-interval (* b c) (* a d))))
         (if (>= b 0)
             (if (>= c 0)
                 (make-interval (* a d) (* b d))
                 (if (>= d 0)
                     (make-interval (min (* a d) (* b c))
                                    (max (* b d) (* a c)))
-                    (make-interval (* b d) (* a d))))
+                    (make-interval (* b c) (* a c))))
             (if (>= c 0)
-                (make-interval (* b d) (* a c))
+                (make-interval (* a d) (* b c))
                 (if (>= d 0)
-                    (make-interval (* b d) (* b c))
-                    (make-interval (* a c) (* b d))))))))
+                    (make-interval (* a d) (* a c))
+                    (make-interval (* b d) (* a c))))))))
 \endtt

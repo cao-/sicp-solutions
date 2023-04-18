@@ -43,8 +43,8 @@
 \def \_printfnotemark {\ifcase 0\fnotenum \or$^\mathbox{†}$\or$^\mathbox{‡}$\or$^\mathbox{††}$\fi}
 \olistskipamount=0pt
 \itemskipamount=1.2\smallskipamount
-\def\filbadbreak{\_par \_vfil \_penalty 50\_vfilneg}
-\def\sol #1.#2 {\bigskip\filbadbreak\noindent{\bf Solution #1.#2}\nobreak\par\nobreak\noindent\input sol-#1.#2}
+\def\filtryavoidbreak{\_par \_vfil \_penalty 50\_vfilneg}
+\def\sol #1.#2 {\bigskip\filtryavoidbreak\noindent{\bf Solution #1.#2}\nobreak\par\nobreak\noindent\input sol-#1.#2}
 \def\solrange #1.#2-#3 {\fornum #2..#3 \do {\sol #1.##1 }}
 \def\sols {\solsA{\_thechapnum}{1}}
 \newread\solread
