@@ -1,7 +1,46 @@
+We can define `make-center-percent` in terms of `make-center-width`:
 \begtt\scm
 (define (make-center-percent c p)
   (make-center-width c (* c (/ p 100.0))))
 
 (define (percent i)
   (* (/ (width i) (center i)) 100.0))
+\endtt
+For instance, we can evaluate the range of resistance for a resistor labeled “$6.8$ ohms with $10\%$ tolerance”:
+\begtt\scm
+(define range (make-center-percent 6.8 10))
+;Value:
+(lower-bound range)
+;Value:6.12
+(upper-bound range)
+;Value:7.4799999999999995
+(center range)
+;Value:6.8
+(percent range)
+;Value:9.999999999999996
+\endtt
+
+Alternatively, we can define `make-center-percent` directly in terms of `make-interval`; and define `percent` in terms of `lower-bound` and `upper-bound`, as follows:
+\begtt\scm
+(define (make-center-percent c p)
+  (let ((r (/ p 100.0)))
+    (make-interval (* c (- 1  r)) (* c (+ 1  r)))))
+
+(define (percent i)
+  (let ((a (lower-bound i))
+        (b (upper-bound i)))
+    (* (/ (- b a) (+ a b)) 100.0)))
+\endtt
+Now, if we perform the same evaluations as before, slightly different results get displayed, because the different expressions used lead to different truncation errors:
+\begtt\scm
+(define range (make-center-percent 6.8 10))
+;Value:
+(lower-bound range)
+;Value:6.12
+(upper-bound range)
+;Value:7.48
+(center range)
+;Value:6.800000000000001
+(percent range)
+;Value:10.000000000000002
 \endtt
