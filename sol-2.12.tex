@@ -9,7 +9,7 @@ We can define `make-center-percent` in terms of `make-center-width`:
 For instance, we can evaluate the range of resistance for a resistor labeled “$6.8$ ohms with $10\%$ tolerance”:
 \begtt\scm
 (define range (make-center-percent 6.8 10))
-;Value:
+
 (lower-bound range)
 ;Value:6.12
 (upper-bound range)
@@ -34,7 +34,7 @@ Alternatively, we can define `make-center-percent` directly in terms of `make-in
 Now, if we perform the same evaluations as before, slightly different results get displayed, because the different expressions used lead to different truncation errors:
 \begtt\scm
 (define range (make-center-percent 6.8 10))
-;Value:
+
 (lower-bound range)
 ;Value:6.12
 (upper-bound range)
