@@ -1,0 +1,9 @@
+\begtt\scm
+(define (same-parity . args)
+  (define (filter-parity parity items)  
+    (cond ((null? items) nil)
+          ((= parity (remainder (car items) 2))
+           (cons (car items) (filter-parity parity (cdr items))))
+          (else (filter-parity parity (cdr items)))))
+  (filter-parity (remainder (car args) 2) args))
+\endtt

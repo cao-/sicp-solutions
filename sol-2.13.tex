@@ -1,25 +1,25 @@
-Let's simplify the problem by assuming that all numbers are positive.  So, let $x$ be an interval, with both lower and upper bounds positive.  Furthermore, let $c_x$ be the centre of $x$ and let $r_x$ be the ratio between the width and the centre of~$x$. With these quantities defined, the interval $x$ has the following expression:
+Let's simplify the problem by assuming that all numbers are positive.  So, let $X$ be an interval, with both lower and upper bounds positive.  Furthermore, let $c_X$ be the centre of $X$ and let $r_X$ be the ratio between the width and the centre of~$X$. With these quantities defined, the interval $X$ has the following expression:
 $$
-x = \I[c_x - r_x c_x, c_x + r_x c_x]\hbox{.}
+X = \I[c_X - r_X c_X, c_X + r_X c_X]\hbox{.}
 $$
 
-Now, if $y$ is another analogous interval with expression
+Now, if $Y$ is another analogous interval with expression
 $$
-y = \I[c_y - r_y c_y, c_y + r_y c_y]\hbox{,}
+Y = \I[c_Y - r_Y c_Y, c_Y + r_Y c_Y]\hbox{,}
 $$
-we can compute the product of $x$ and $y$,
+we can compute the product of $X$ and $Y$,
 $$
 \eqalign{
-z &= x \cdot y \cr 
-  &= \I[(c_x - r_x c_x)(c_y - r_y c_y), (c_x + r_x c_x)(c_y + r_y c_y)] \cr 
-  &= \I[c_x c_y - c_x c_y (r_x + r_y - r_x r_y), c_x c_y + c_x c_y (r_x + r_y + r_x r_y)]\hbox{.}
+Z &= X \cdot Y \cr 
+  &= \I[(c_X - r_X c_X)(c_Y - r_Y c_Y), (c_X + r_X c_X)(c_Y + r_Y c_Y)] \cr 
+  &= \I[c_X c_Y - c_X c_Y (r_X + r_Y - r_X r_Y), c_X c_Y + c_X c_Y (r_X + r_Y + r_X r_Y)]\hbox{.}
 }
 $$
 
-Under the assumption of small percentage tolerances (i.e., small values of $r_x$ and $r_y$), we can approximate the expression $r_x + r_y \pm r_x r_y$ with the simpler expression $r_x + r_y$.
-With this approximation, $z$ simplifies into
+Under the assumption of small percentage tolerances (i.e., small values of $r_X$ and $r_Y$), we can approximate the expression $r_X + r_Y \pm r_X r_Y$ with the simpler expression $r_X + r_Y$.
+With this approximation, $Z$ simplifies into
 $$
-z\approx \I[c_x c_y - c_x c_y (r_x + r_y), c_x c_y + c_x c_y (r_x + r_y)].
+Z\approx \I[c_X c_Y - c_X c_Y (r_X + r_Y), c_X c_Y + c_X c_Y (r_X + r_Y)].
 $$
 
-This means that $c_z = c_x c_y$ and also that $r_z = r_x + r_y$.  So, the approximate percentage tolerance of the product of two intervals is the sum of the tolerances of the factors.
+This means that $c_Z = c_X c_Y$ and also that $r_Z = r_X + r_Y$.  So, the approximate percentage tolerance of the product of two intervals is the sum of the tolerances of the factors.

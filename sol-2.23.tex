@@ -1,0 +1,7 @@
+Here is an implementation of `for-each`, whose return value is unspecified:
+\begtt\scm
+(define (for-each proc items)
+  (cond ((not (null? items))
+         (proc (car items))
+         (for-each proc (cdr items)))))
+\endtt
