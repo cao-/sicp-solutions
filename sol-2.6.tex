@@ -38,12 +38,12 @@ In order to see if the addition procedure works, we can convert the Church numer
 Then, we can evaluate the following expressions:
 \begtt\scm
 (convert one)
-;Value:1
+;Value: 1
 (convert two)
-;Value:2
+;Value: 2
 (convert (+ one two))
-;Value:3
+;Value: 3
 (let ((three (+ one two)))
   (convert (+ three two)))
-;Value:5
+;Value: 5
 \endtt

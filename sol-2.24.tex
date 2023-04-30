@@ -1,0 +1,42 @@
+Here is the result printed by the interpreter:
+\begtt\scm
+(list 1 (list 2 (list 3 4)))
+;Value: (1 (2 (3 4)))
+\endtt
+And here are the corresponding box-and-pointer structure, and its interpretation as a tree:
+\smallskip
+\bgroup\typoscale[900/]
+\centerline{%
+    \hfil
+    \directmetapost{
+    beginfig(1);
+    u = 0.7cm;
+    %defaultscale := .9;
+      z0 = (0, 0);
+      z1 = (-u, -u);
+      z2 = (0, -2u);
+      z3 = (u, -3u);
+      z4 = (3u, -3u);
+      z5 = (2u, -2u);
+      z6 = (u, -u);
+      pickup pencircle scaled 4pt;
+      drawdot z0;
+      drawdot z5;
+      drawdot z6;
+      pickup pencircle scaled .8pt;
+      draw z0--z1;
+      draw z0--z4;
+      draw z6--z2;
+      draw z5--z3;
+      label.llft("1", z1);
+      label.llft("2", z2);
+      label.llft("3", z3);
+      label.lrt("4", z4);
+      label.top(btex {\tt (1 (2 (3 4)))} etex, z0);
+      label.urt(btex {\tt (2 (3 4))} etex, z6);
+      label.urt(btex {\tt (3 4)} etex, z5);
+    endfig;
+    end
+}}%
+\egroup
+\mnote{Add missing box-and-pointer structure!}

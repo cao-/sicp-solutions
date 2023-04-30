@@ -6,7 +6,7 @@ The `double` procedure can be defined as follows:
 Then we can evaluate the given expression:
 \begtt\scm
 (((double (double double)) inc) 5)
-;Value:21
+;Value: 21
 \endtt
 
 Let's try to understand what's going on. Evaluating `(double double)` gives the procedure that applies `double` twice to its argument.  Therefore, evaluating `(double (double double))` gives the procedure that applies `double` four times to its argument.  This means that

@@ -11,13 +11,13 @@ For instance, we can evaluate the range of resistance for a resistor labeled “
 (define range (make-center-percent 6.8 10))
 
 (lower-bound range)
-;Value:6.12
+;Value: 6.12
 (upper-bound range)
-;Value:7.4799999999999995
+;Value: 7.4799999999999995
 (center range)
-;Value:6.8
+;Value: 6.8
 (percent range)
-;Value:9.999999999999996
+;Value: 9.999999999999996
 \endtt
 
 Alternatively, we can define `make-center-percent` directly in terms of `make-interval`; and define `percent` in terms of `lower-bound` and `upper-bound`, as follows:
@@ -36,11 +36,11 @@ Now, if we perform the same evaluations as before, slightly different results ge
 (define range (make-center-percent 6.8 10))
 
 (lower-bound range)
-;Value:6.12
+;Value: 6.12
 (upper-bound range)
-;Value:7.48
+;Value: 7.48
 (center range)
-;Value:6.800000000000001
+;Value: 6.800000000000001
 (percent range)
-;Value:10.000000000000002
+;Value: 10.000000000000002
 \endtt

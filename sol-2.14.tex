@@ -9,30 +9,30 @@ Then, if we use the procedure `par1` to compute the parallel-resistors formula, 
 (define rp1 (par1 r1 r2))
 
 (lower-bound rp1)
-;Value:2.201031010873943
+;Value: 2.201031010873943
 (upper-bound rp1)
-;Value:3.4873689182805854
+;Value: 3.4873689182805854
 (width rp1)
-;Value:0.6431689537033212
+;Value: 0.6431689537033212
 (center rp1)
-;Value:2.844199964577264
+;Value: 2.844199964577264
 (percent rp1)
-;Value:22.613352145193346
+;Value: 22.613352145193346
 \endtt
 Instead, if we use `par2`, we get a different result:
 \begtt\scm
 (define rp2 (par2 r1 r2))
 
 (lower-bound rp2)
-;Value:2.581558809636278
+;Value: 2.581558809636278
 (upper-bound rp2)
-;Value:2.97332259363673
+;Value: 2.97332259363673
 (width rp2)
-;Value:0.1958818920002261
+;Value: 0.1958818920002261
 (center rp2)
-;Value:2.777440701636504
+;Value: 2.777440701636504
 (percent rp2)
-;Value:7.05260392723452
+;Value: 7.05260392723452
 \endtt
 We see that `par2` produces tighter bounds.
 
@@ -45,16 +45,16 @@ To better understand what's going on, let's define two intervals $A$ and $B$, an
 (define a/b (div-interval a b))
 
 (center a/b)
-;Value:2.001200480192077
+;Value: 2.001200480192077
 (percent a/b)
-;Value:2.9994001199759954
+;Value: 2.9994001199759954
 
 (define a/a (div-interval a a))
 
 (center a/a)
-;Value:1.0002000200020003
+;Value: 1.0002000200020003
 (percent a/a)
-;Value:1.9998000199979908
+;Value: 1.9998000199979908
 \endtt
 
 The result we get when evaluating $A/B$ seems reasonable.  In fact, the centre of $A/B$ is approximately the ratio between the centre of $A$ and the centre of $B$; and the percentage tolerance of $A/B$ is approximately the sum of the pergentage tolerances of $A$ and~$B$, in accordance with the result we got in exercise~2.13.

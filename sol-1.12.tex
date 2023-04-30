@@ -1,8 +1,8 @@
 With $n$ representing the row of the triangle and $k$ the column, 
 \begtt\scm
-(define (Pascal n k)
+(define (pascal n k)
   (if (or (= k 0) (= k n))
       1
-      (+ (Pascal (- n 1) (- k 1))
-         (Pascal (- n 1) k))))
+      (+ (pascal (- n 1) (- k 1))
+         (pascal (- n 1) k))))
 \endtt
