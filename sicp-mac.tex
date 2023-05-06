@@ -1,6 +1,6 @@
 \load[tikz, mte, minim-mp]
 \enablemte
-\hyperlinks \Pink \Green
+\hyperlinks \Magenta \Green
 \fnotelinks \Black \Black
 \fontfam[EBGaramond]
 \directlua
@@ -33,6 +33,7 @@
 \famvardef\tt{\NewCM\ttset\rm}
 \famvardef\sltt{\LMfonts\ttset\slant\it}
 \ttindent=2em
+\iindent=2em
 \def\_ttskip{\smallskip}
 \parindent=0em
 \parskip=1.25\smallskipamount
@@ -45,8 +46,18 @@
 \olistskipamount=0pt
 \itemskipamount=1.2\smallskipamount
 \def\filtryavoidbreak{\_par \_vfil \_penalty 60\_vfilneg}
-\def\sol #1.#2 {\bigskip\filtryavoidbreak\noindent{\bf Solution #1.#2}\nobreak\par\nobreak\noindent\input sol-#1.#2}
+\def\sol #1.#2 {\bigskip\filtryavoidbreak\noindent
+  \label[#1.#2]\wlabel{#1.#2}{\bf Solution #1.#2}%
+  \addtotoc{10}{sol}{#1.#2}{\relax}{}%
+  \nobreak\par\nobreak\noindent\input sol-#1.#2}
 \def\solrange #1.#2-#3 {\fornum #2..#3 \do {\sol #1.##1 }}
-\def\sols {\solsA{\_thechapnum}{1}}
+\def\sols{\solsA{\_thechapnum}{1}}
 \newread\solread
 \def\solsA#1#2{\openin\solread=sol-#1.#2 \ifeof\solread\else\sol #1.#2 \tmpnum=#2 \incr\tmpnum\solsA{#1}{\the\tmpnum}\fi}
+
+\def\addtotoc#1#2#3#4#5{%
+    \incr\_tocrefnum
+    \_dest[toc:\_the\_tocrefnum]%
+    \_ewref\_Xtoc{{#1}{#2}{#3}{#4}#5}%
+}
+\sdef{_tocl:10}#1#2#3{Solution \ref[#1]\_tocdotfill \_pgn{#3}\_tocpar}
