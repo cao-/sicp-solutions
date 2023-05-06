@@ -1,0 +1,24 @@
+Here is how we can modify the `reverse` procedure of exercise~\ref[2.18] to produce a `deep-reverse` procedure:
+\begtt\scm
+(define (deep-reverse items)
+  (define (iter things answer)
+    (if (null? things)
+        answer
+        (iter (cdr things)
+              (let ((c (car things)))
+                (let ((x (if (pair? c)
+                             (deep-reverse c)
+                             c)))
+                  (cons x answer))))))
+  (iter items nil))
+\endtt
+
+Alternatively, `deep-reverse` can be defined in terms of `reverse` and `map`:
+\begtt\scm
+(define (deep-reverse items)
+  (reverse (map (lambda (item)
+                  (if (pair? item)
+                    (deep-reverse item)
+                    item))
+             items)))
+\endtt

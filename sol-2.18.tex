@@ -1,9 +1,9 @@
 \begtt\scm
 (define (reverse items)
-  (define (iter elements result)
-    (if (null? elements)
+  (define (iter things result)
+    (if (null? things)
         result
-        (iter (cdr elements)
-              (cons (car elements) result))))
+        (iter (cdr things)
+              (cons (car things) result))))
   (iter items nil))
 \endtt
