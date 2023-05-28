@@ -1,0 +1,19 @@
+The procedure that generates the set of subsets of a given set is
+\begtt\scm
+(define (subsets s)
+  (if (null? s)
+      (list nil)
+      (let ((rest (subsets (cdr s))))
+        (append rest (map (lambda (e) (cons (car s) e)) rest)))))
+\endtt
+
+This procedure works because if $S$ is a non-empty set and $x$ is one of its elements, then for each subset $T$ of $S$ there are two possibilities:
+\begitems
+* either $x$ does not belong to $T$, so that $T$ is a subset of $S\setminus\{x\}$;
+* or $x$ is an element of $T$, in which case $T$ is the union between $\{x\}$ and some subset of $S\setminus\{x\}$.
+\enditems
+More formally,
+$$
+{\cal P}(S) = {\cal P}(S\setminus\{x\})\;\hbox{\typoscale[1200/]$\cupdot$}\;\bigl\{\, Y\cup\{x\} :\, Y\in{\cal P}(S\setminus\{x\}) \bigr\}\hbox{,}
+$$
+where ${\cal P}(S)$ and ${\cal P}(S\setminus\{x\})$ denote the sets of subsets of $S$ and $S\setminus\{x\}$ respectively.
