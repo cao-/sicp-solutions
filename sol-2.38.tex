@@ -1,0 +1,39 @@
+Here are the results of evaluating each of the given expressions:
+\begtt\scm
+(fold-right / 1 (list 1 2 3))
+;Value: 3/2 
+(fold-left / 1 (list 1 2 3))
+;Value: 1/6 
+(fold-right list nil (list 1 2 3))
+;Value: (1 (2 (3 ())))
+(fold-left list nil (list 1 2 3))
+;Value: (((() 1) 2) 3)
+\endtt
+
+If `op` is both associative and commutative,\fnote{We say that a procedure `op` that takes two arguments is {\em associative} if the expressions `(op (op a b) c)` and `(op a (op b c))` always produce the same values; we say that it is {\em commutative} if `(op a b)` and `(op b a)` always produce the same values.}
+ then `fold-right` and `fold-left` are guaranteed to produce the same values for any sequence and any initial value.  For instance, for the addition of numbers, since it satisfies the two properties, folding from both directions always produce the same results:
+\begtt\scm
+(fold-right + 0 (list 1 2 3))
+;Value: 6
+(fold-left + 0 (list 1 2 3))
+;Value: 6
+(fold-right + 5 (list 1 2 3))
+;Value: 11
+(fold-left + 5 (list 1 2 3))
+;Value: 11
+\endtt
+
+Associativy alone is not enough to guarantee the same results, unless the `initial` value is the neutral element\fnote{We say that a value `e` is the {\em neutral element} for the procedure `op` if both `(op a e)` and `(op e a)` produce the value `a`.} of the accumulation procedure.  For instance, since the operation of concatenation of sequences is associative, but not commutative, and its neutral element is the empty sequence, we see the same results in the following case:
+\begtt\scm
+(fold-right append nil (list (list 1 2 3) (list 4 5)))
+;Value: (1 2 3 4 5)
+(fold-left append nil (list (list 1 2 3) (list 4 5)))
+;Value: (1 2 3 4 5)
+\endtt
+but not in this other case:
+\begtt\scm
+(fold-right append (list 0) (list (list 1 2 3) (list 4 5)))
+;Value: (0 1 2 3 4 5)
+(fold-left append (list 0) (list (list 1 2 3) (list 4 5)))
+;Value: (1 2 3 4 5 0)
+\endtt
