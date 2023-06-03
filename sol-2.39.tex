@@ -1,0 +1,8 @@
+\begtt\scm
+(define (reverse sequence)
+  (fold-right (lambda (x y) (append y (list x))) nil sequence))
+
+(define (reverse sequence)
+  (fold-left (lambda (x y) (cons y x)) nil sequence))
+\endtt
+Notice that the `reverse` procedure defined in terms of `fold-right` is very inefficient, because it generates a process that requires a number of steps proportional to the square of the length of the given sequence;  instead the procedure defined in terms of `fold-left` generates a linear iterative process.
