@@ -1,5 +1,5 @@
 \begtt\scm
-(define (given-sum-triples n s)
+(define (fixed-sum-triples n s)
   (filter (lambda (triple)
             (= s (accumulate + 0 triple)))
           (unique-triples n)))

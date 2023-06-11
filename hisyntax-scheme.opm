@@ -20,6 +20,7 @@
    \_replthis{\_string\'}{{\_string\'}}
    %
    \_replfromto{\n;Value:\n\ \n}{^^J}{\z U{\sltt#1\smallskip}^^J} % outputs
+   \_replfromto{\n;value:\n\ \n}{^^J}{\z U{\sltt#1}^^J} % outputs
    \_replfromto{\n;Display:\n\ \n}{^^J}{\z C{#1}^^J} % displays
    \_replfromto{\_string;}{^^J}{\z C{;#1}^^J} % comments
    %
