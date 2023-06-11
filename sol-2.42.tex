@@ -17,6 +17,7 @@ With this representation, the missing procedures can be defined as follows:
                            (= d-row (- d-col)))))
                    rest-of-queens))))
 \endtt
+Notice that we don't need to use the first argument of the `safe?` procedure, because the position of the queen in column `k` is always the first element of the list of positions, for how we chose to implement the `adjoin-position` procedure.  
 
 As an example, here is the sequence of all solutions to the queens puzzle on a board of size~5:
 \begtt\scm
